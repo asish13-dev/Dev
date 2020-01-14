@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+
+	 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!-- <link rel="stylesheet" href="../../SiteAssets/form/CEA.css" type="text/css"> -->
+
+
+	 <script src="../../SiteAssets/form/CCA.js" type="text/javascript"></script>
+	<script type="text/javascript" src="../../SiteAssets/HillbillyTemplate.js"></script>
+
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/jspdf.min.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/jspdf.customfonts.min.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/default_vfs.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/libs/png_support/zlib.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/libs/png_support/png.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/plugins/addimage.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/plugins/png_support.js"></script>
+	<script type="text/javascript" src="../../SiteAssets/jsPDF/jspdf.plugin.autotable.min.js"></script>
+	<script type="text/javascript" src="../.././SiteAssets/form/print_issue.js"></script>
+	<style>
+		@media (min-width: 1200px) {
+			.row {
+				margin-left: -15px;
+				padding: 2px 0px;
+			}
+		}
+
+		.btn {
+			background-color: #0072c6;
+			color: white;
+		}
+
+		#sideNavBox {
+			display: none;
+		}
+
+
+
+		.ms-core-tableNoSpace {
+			width: 100%;
+		}
+
+		#contentBox {
+			margin-right: 0px;
+			margin-left: 0px;
+			min-width: 0px;
+		}
+
+
+
+		.nav-tabs .nav-item.show .nav-link,
+		.nav-tabs .nav-link.active {
+			background-color: #1ba1e2;
+			color: #ffffff;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+		}
+		#tblResponsive{overflow:hidden; word-wrap:normal | break-word; }
+/* #tblResponsive td{
+  word-break:break-all;
+} */
+		input[type=password],
+		input[type=text],
+		input[type=file],
+		input:not([type]),
+		select,
+		textarea,
+		.sp-peoplepicker-topLevel,
+		.sp-peoplepicker-topLevelDisabled,
+		.sp-peoplepicker-autoFillContainer,
+		.ms-inputBox {
+			border-radius: 4px !important;
+			width: 100%;
+		}
+
+		textarea[title='Contract Description'],
+		textarea[title='Remarks'],
+		textarea[title='Contract Type Other'],
+		textarea[title='Lease Comments'],
+		textarea[title='GL Account Number Required Field'],
+		textarea[title='Expected Results Required Field'],
+		textarea[title='Payback Period'],
+		textarea[title='History'],
+		textarea[title='WIP Draft Remarks'],
+		textarea[title='WIP CCA Admin Remarks'],
+		textarea[title='WIP Review Remarks'],
+		textarea[title='Level1 Approval Remarks'],
+		textarea[title='CIO Remarks'],
+		textarea[title='Level2 Approval Remarks'],
+		textarea[title='CEO Remarks'],
+		textarea[title='Approved Remarks'],
+		textarea[title='Rejected Remarks'],
+		textarea[title='Executed Remarks']{
+			width: 100%;
+		}
+
+		input[title='AllocAMS'],
+		input[title='AllocAPAC'],
+		input[title='AllocEMEA'],
+		input[title='AllocCORP']{
+			width:83%;
+		}
+
+        .fa-usd{
+			background-color:#d8d8d8;
+			width: 14%;
+			height: 37px;
+			text-align: center;
+			margin-top: 12px;
+			padding-top: 10px;
+
+		}
+        hr {
+       display: block;
+       margin-top: 0.5em;
+       margin-bottom: 0.5em;
+       margin-left: auto;
+       margin-right: auto;
+       border-style: inset;
+       border-width: 1px;
+       }
+
+
+
+		table[id$='ChoiceRadioTable'] tr {
+			display: inline;
+		}
+
+		input[type=radio],
+		input[type=checkbox] {
+			vertical-align: initial;
+		}
+
+		#Contract_x0020_Type_9fd7155a-5693-497b-bb8c-d93fc19caf6c_ChoiceRadioTable td,
+		#SupplementCCA_30d813f2-fe1e-4dc3-9888-1f19d6168226_ChoiceRadioTable td,
+		#IT_x0020_Related_182966a0-8113-4045-8537-b94956415e8b_ChoiceRadioTable td,
+		#Safety_x0020_Related_a0b58710-eeda-4b32-a437-0daa01a931f4_ChoiceRadioTable td,
+		#Environmental_x0020_Related_93873754-bf11-4426-97fe-863860a96dd3_ChoiceRadioTable td,
+		#Legal_x0020_Contacted_e673f61f-1795-4cbe-9c2f-32ae24c862fe_ChoiceRadioTable td,
+		#Related_x0020_Party_c3f896c8-e466-4949-8d29-8ab649c9c183_ChoiceRadioTable td,
+		#Consultant_x0020_Type_c7251272-0e2f-45a0-93ba-46743dd8a794_ChoiceRadioTable td,
+		#Raw_x0020_Material_x0020_Type_95e7a355-34bb-42d5-8184-6e9467156656_ChoiceRadioTable td,
+		#Service_x0020_Type_d475f24f-892a-4b45-81c2-4a26469f59b8_ChoiceRadioTable td,
+		#Lease_x0020_Type_054729f2-be81-4c9c-b9fd-999d21721b3d_ChoiceRadioTable td,
+		#Lease_x0020_Asset_x0020_Type_c0ba271a-fb8f-4af0-8d3e-59fea5e090ac_ChoiceRadioTable td,
+		#Real_x0020_Estate_x0020_Options_e7316422-f526-4f7a-b731-e08b658e27be_ChoiceRadioTable td,
+		#Payment_x0020_Type_103dde02-8a10-4f5d-bc7f-3016c83fa232_ChoiceRadioTable td,
+		#GlobalAllocation_fd50e09e-0dc2-4702-bc70-abb23430b0a2_ChoiceRadioTable td {
+			padding:0 10px;
+		}
+
+	</style>
+	<script>
+$(document).ready(function () {
+    $("#demo").hide();
+	$("#panel").hide();
+	$("#ConsultantType").hide();
+	$("#IfOtherExplain").hide();
+	$("#RawMaterialType").hide();
+	$("#ServiceType").hide();
+	$("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+    $("#RealEstateOptions").hide();
+	$("#SQFTOfProperty").hide();
+	$("#PropertyStreetAddress").hide();
+	$("#City").hide();
+	$("#RealEstateState").hide();
+	$("#RealEstateZipCode").hide();
+    $("#LevelPayAmount").hide();
+	$("#PaymentDuration").hide();
+	$("#PaymentDate").hide();
+	$("#Multipaymenttable").hide();
+	$("#Allocreg").hide();
+	$("#hassupplementcca").hide();
+
+    $("#Statustype :input").prop("disabled", true);
+	$("#Statusdate :input").prop("disabled", true);
+
+	var wwdRegion;
+	var wwdDivision;
+	var wwdBusinessUnit;
+	var wwdDepartment;
+
+	});
+function toggleclick(){
+$("#demo").toggle();
+}
+function supplement(){
+	var supplevalue = $("#supplementcca input[type='radio']:checked").val();
+	if(supplevalue=="Yes"){
+		$("#hassupplementcca").show();
+	}
+	else{
+		$("#hassupplementcca").hide();
+	}
+}
+function Globalloc(){
+var allocvalue = $("#GlobalAlloc input[type='radio']:checked").val();
+if(allocvalue=="Yes"){
+$("#Allocreg").show();
+}
+else{
+$("#Allocreg").hide();
+}
+}
+
+
+
+function Paymentclick(){
+	var PayValue = $("#PaymentType input[type='radio']:checked").val();
+	alert(PayValue);
+	if(PayValue=="Weekly"||PayValue=="Monthly"||PayValue=="Quarterly"||PayValue=="Annually"){
+		 $("#LevelPayAmount").show();
+	     $("#PaymentDuration").show();
+		 $("#PaymentDate").hide();
+		 $("#Multipaymenttable").hide();
+
+	}
+	else if(PayValue=="Single Payment")
+	{
+    $("#LevelPayAmount").hide();
+	$("#PaymentDuration").hide();
+	$("#PaymentDate").show();
+	$("#Multipaymenttable").hide();
+
+	}
+	else{
+	$("#LevelPayAmount").hide();
+	$("#PaymentDuration").hide();
+	$("#PaymentDate").hide();
+	$("#Multipaymenttable").show();
+	}
+}
+
+
+
+function Contractclick() {
+var selValue = $("#contracttype input[type='radio']:checked").val();
+alert(selValue);
+if(selValue=="Lease"){
+	$("#panel").show();
+	$("#LeaseType").show();
+	$("#LeasedAssetType").show();
+	$("#LeaseStatus").show();
+	$("#Comments").show();
+	$("#UserName").show();
+	$("#MachineType").show();
+	$("#ModelNumber").show();
+	$("#SerialNumber").show();
+	$("#LeaseNumber").show();
+	$("#Location").show();
+	$("#State").show();
+    $("#ConsultantType").hide();
+	$("#IfOtherExplain").hide();
+	$("#RawMaterialType").hide();
+	$("#ServiceType").hide();
+    $("#RealEstateOptions").hide();
+	$("#SQFTOfProperty").hide();
+	$("#PropertyStreetAddress").hide();
+	$("#City").hide();
+	$("#RealEstateState").hide();
+	$("#RealEstateZipCode").hide();
+}
+
+if(selValue=="Consultant"){
+	$("#ConsultantType").show();
+	$("#IfOtherExplain").hide();
+	$("#RawMaterialType").hide();
+	$("#ServiceType").hide();
+	$("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+    $("#RealEstateOptions").hide();
+	$("#SQFTOfProperty").hide();
+	$("#PropertyStreetAddress").hide();
+	$("#City").hide();
+	$("#RealEstateState").hide();
+	$("#RealEstateZipCode").hide();
+}
+if(selValue=="Global Purchase"){
+	$("#ConsultantType").hide();
+	$("#IfOtherExplain").hide();
+	$("#RawMaterialType").hide();
+	$("#ServiceType").hide();
+	$("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+    $("#RealEstateOptions").hide();
+	$("#SQFTOfProperty").hide();
+	$("#PropertyStreetAddress").hide();
+	$("#City").hide();
+	$("#RealEstateState").hide();
+	$("#RealEstateZipCode").hide();
+
+}
+
+if(selValue=="Other - Explain"){
+	$("#IfOtherExplain").show();
+	$("#ConsultantType").hide();
+	$("#RawMaterialType").hide();
+	$("#ServiceType").hide();
+	$("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+    $("#RealEstateOptions").hide();
+	$("#SQFTOfProperty").hide();
+	$("#PropertyStreetAddress").hide();
+	$("#City").hide();
+	$("#RealEstateState").hide();
+	$("#RealEstateZipCode").hide();
+}
+if(selValue=="Raw Materials"){
+	$("#RawMaterialType").show();
+	$("#ConsultantType").hide();
+	$("#IfOtherExplain").hide();
+	$("#ServiceType").hide();
+	$("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+    $("#RealEstateOptions").hide();
+	$("#SQFTOfProperty").hide();
+	$("#PropertyStreetAddress").hide();
+	$("#City").hide();
+	$("#RealEstateState").hide();
+	$("#RealEstateZipCode").hide();
+}
+if(selValue=="Service"){
+	$("#ServiceType").show();
+	$("#ConsultantType").hide();
+	$("#IfOtherExplain").hide();
+	$("#RawMaterialType").hide();
+	$("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+    $("#RealEstateOptions").hide();
+	$("#SQFTOfProperty").hide();
+	$("#PropertyStreetAddress").hide();
+	$("#City").hide();
+	$("#RealEstateState").hide();
+	$("#RealEstateZipCode").hide();
+}
+if(selValue=="Real Estate"){
+    $("#RealEstateOptions").show();
+	$("#SQFTOfProperty").show();
+	$("#PropertyStreetAddress").show();
+	$("#City").show();
+	$("#RealEstateState").show();
+	$("#RealEstateZipCode").show();
+    $("#ConsultantType").hide();
+	$("#IfOtherExplain").hide();
+	$("#RawMaterialType").hide();
+	$("#ServiceType").hide();
+	$("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+}
+}
+
+function Yes()
+{
+    $("#panel").hide();
+    $("#contracttype input[type='radio']:nth(5)").prop("checked", true);
+    $("#RealEstateOptions").show();
+	$("#SQFTOfProperty").show();
+	$("#PropertyStreetAddress").show();
+	$("#City").show();
+	$("#RealEstateState").show();
+	$("#RealEstateZipCode").show();
+    $("#LeaseType").hide();
+	$("#LeasedAssetType").hide();
+	$("#LeaseStatus").hide();
+	$("#Comments").hide();
+	$("#UserName").hide();
+	$("#MachineType").hide();
+	$("#ModelNumber").hide();
+	$("#SerialNumber").hide();
+	$("#LeaseNumber").hide();
+	$("#Location").hide();
+	$("#State").hide();
+}
+</script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<h3 style="color:black;">Contract Commitment Authorization Request</h3>
+		<div class="m-0" style="padding-bottom:5px;">
+			<button type="button" value="Save" class="btn btn-labeled m-1" id='savebtn'>
+                <span class="btn-label">
+                    <i class="fa fa-backward"></i>
+                </span>Save
+            </button>
+			<button type="button" value="Submit for Review" class="btn btn-labeled m-1"
+                    id='submitforReviewbtn'>
+                <span class="btn-label">
+                    <i class="fa fa-paper-plane"></i>
+                </span>Submit For Review
+            </button>
+			<button type="button" value="Edit" class="btn btn-labeled m-1"
+                    id='Editbtn'>
+                <span class="btn-label">
+                    <i class="fa fa-edit"></i>
+                </span>Edit
+            </button>
+			<button type="button" value="Archived" class="btn btn-labeled m-1"
+                    id='Archivedbtn'>
+                <span class="btn-label">
+                </span>Archived
+            </button>
+			<button type="button" value="UnArchived" class="btn btn-labeled m-1"
+                    id='UnArchivedbtn'>
+                <span class="btn-label">
+                </span>UnArchived
+            </button>
+
+		</div>
+
+<div class="alert alert-danger">
+	<div class="row">
+					<label value="Archived on" style="font-size:14pt;color:#953734;">Archived on</label>
+	</div>
+</div>
+<div class="alert alert-dark">
+			<div class="row">
+				<div class="col-sm-1">
+					<label value="CEA Number" style="color:rgb(0,0,128)">Status</label>
+				</div>
+				<div class="col-sm-3">
+					<span class="hillbillyForm" id="Statustype"  data-displayName="Status Type"></span>
+				</div>
+
+				<div class="col-sm-1">
+					<label value="Date" style="color:rgb(0,0,128)">Date</label>
+				</div>
+				<div class="col-sm-3">
+					<span class="hillbillyForm" id="Statusdate" data-displayName="Status Date"></span>
+				</div>
+				<div class="col-sm-1">
+					<label value="Initiator" style="color:rgb(0,0,128)">Initiator</label>
+				</div>
+				<div class="col-sm-3">
+					<span class="hillbillyForm" data-displayName="Initiator"></span>
+				</div>
+			</div>
+		</div>
+		<ul class="nav nav-tabs">
+			<li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#ccadetails">CCA Details</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#ContractDetails">Contract Details</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#narrative">Narrative</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#approval">Approval</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history">History</a></li>
+		</ul>
+		<div class="tab-content">
+			<div id="ccadetails" class="tab-pane fade-in active">
+
+				<div class="card" style="border-color: #337ab7;">
+					<div class="card-header" style="background-color:#337ab7;color:white">
+						Contract Details
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Vendor Number</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Vendor Number"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Vendor Name: *</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Vendor Name"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Contract Description</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Contract Description"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Region</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varRegion"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Division</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varDivision"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Business Unit:</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varBusinessUnit"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Department</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varDepartment"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Country</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varCountry"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Category</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varCategory"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Sub-Category</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varSub-Category"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Contract Manager:</label>
+							</div>
+							<div class="col-sm-4">
+								<span class="hillbillyForm" data-displayName="Contract Manager"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Remarks:</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Remarks"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Supplement CCA:</label>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" id="supplementcca" onclick="supplement()" data-displayName="SupplementCCA"></span>
+							</div>
+							<div class="row" id="hassupplementcca">
+							<label  style="color:rgb(0,0,128)">CCA#</label>
+							<div class="col-sm-8">
+								<span class="hillbillyForm"  data-displayName="HasSupplementCCA"></span>
+							</div>
+							</div>
+
+						</div>
+                     <div class="row">
+						 <div class="col-sm-4"></div>
+						 <div class="col-sm-4">
+                        <div class="alert mx-auto" id="panel" style="border-color:black;cursor: pointer;">
+							<div class="row">
+								<div class="col-sm-11 text-center" style="color:rgb(0,0,128);">Contract Type - Lease
+									<hr>
+								</div>
+								<div class="col-sm-11 text-center"  style="color:rgb(0,0,128);">Is this a Real Estate Lease?
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-11 text-center">
+									<button type="button" value="Yes" onclick="Yes()" class="btn btn-labeled" id='Yesbtn'>
+						                     <span class="btn-label">
+						                    </span>Yes
+						                     </button>
+									<button type="button" value="No" class="btn btn-labeled" id='Nobtn'>
+						                 <span class="btn-label">
+						                </span>No
+						                </button>
+								</div>
+							</div>
+
+
+						</div>
+						 </div>
+						 <div class="col-sm-4"></div>
+					 </div>
+
+
+
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Contract Type: *</label>
+							</div>
+							<div class="col-sm-10">
+								<div class="alert" style="background-color:#f2f2f2;">
+									<span class="hillbillyForm" id="contracttype" onclick="Contractclick()" data-displayName="Contract Type"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="alert p-3" style="background-color: rgb(183, 221, 232);">
+							<div class="row">
+								<div class="col-sm-6">
+									<label style="color:rgb(0,0,128)">Is this Contract related to IT equipment, software, hardware, websites, etc.?</label>
+								</div>
+								<div class="col-sm-6">
+
+									<span class="hillbillyForm" data-displayName="IT Related"></span>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<label style="color:rgb(0,0,128)">Is this Contract related to Occupational Health and Safety?</label>
+								</div>
+								<div class="col-sm-6">
+
+									<span class="hillbillyForm" data-displayName="Safety Related"></span>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<label style="color:rgb(0,0,128)">Is this Contract Environmentally related?</label>
+								</div>
+								<div class="col-sm-6">
+
+									<span class="hillbillyForm" data-displayName="Environmental Related"></span>
+								</div>
+
+							</div>
+
+						</div>
+						<div class="alert p-3" style="background-color:#d7e3bc;">
+							<div class="row">
+								<div class="col-sm-6">
+									<label style="color:rgb(0,0,128)">Has Legal been contacted regarding this contract?</label>
+								</div>
+								<div class="col-sm-6">
+
+									<span class="hillbillyForm" data-displayName="Legal Contacted"></span>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-sm-6">
+									<label style="color:rgb(0,0,128)">Legal Contact:</label>
+								</div>
+								<div class="col-sm-4">
+
+									<span class="hillbillyForm" data-displayName="Legal Contact"></span>
+								</div>
+							</div>
+						</div>
+						<div class="alert p-3" style="background-color:#e5b9b7;">
+							<div class="row">
+								<div class="col-sm-6">
+									<label style="color:rgb(0,0,128)">Is the contracting supplier a related party to the contract manager or involved associates?</label>
+								</div>
+								<div class="col-sm-4">
+
+									<span class="hillbillyForm" data-displayName="Related Party"></span>
+								</div>
+							</div>
+						</div>
+                    <div class="row">
+						 <div class="col-sm-2"></div>
+						 <div class="col-sm-8">
+ <div class="alert mx-auto"  style="background-color:#e5b9b7;cursor: pointer;">
+							<div class="row">
+
+
+ <input id="toggleclck" class="col-sm-11 text-center"  style="color:rgb(0,0,128);background-color:#e5b9b7;font-size:100%;border-color: #e5b9b7;" type="BUTTON" onclick='toggleclick()' value="CONFLICT OF INTEREST RULE" />
+							</div>
+						</div>
+						<div class="alert mx-auto" id="demo" style="border-color:#e5b9b7;">
+							<div class="row">
+								<div class="col-sm-12 text-justify" style="color:rgb(0,0,128);">Any circumstance that
+									could cast doubt or the appearance of doubt on an employee’s ability to act with
+									total objectivity with regard to the interests of Interface, Inc. is considered a
+									potential conflict of interest. Any such potential conflicts of interest must be
+									reported as part of the contract approval process. This would include (but not be
+									limited to) circumstances where:</div>
+								<div class="col-sm-12 text-justify" style="color:rgb(0,0,128);">
+									1. An employee or a family member has an ownership interest in a supplier, except
+									for holdings of less than 1% of the outstanding stock of a publicly traded company.
+									2. An employee or a family member acts as a director, officer, partner, employee,
+									agent or consultant, without compensation, for a present or proposed supplier.
+									3. An employee or a family member accepted or was offered gifts, gratuities,
+									entertainment, travel or hospitality from a supplier. Reasonable meals which provide
+									a continuity of business discussions are allowed. Gifts of inconsequential value
+									such as calendars, pens, note pads, appointment books, may be accepted in
+									circumstances where such minor gifts are customary. In appropriate cases, after full
+									written disclosure of the facts, an exception to the foregoing standards may be
+									authorized by the division president as the general counsel if it is determined that
+									no material conflict of interest exists.
+								</div>
+							</div>
+
+						 </div>
+						 <div class="col-sm-2"></div>
+                    </div>
+
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="ContractDetails" class="tab-pane fade-in">
+				<div class="card" style="border-color: #bce8f1;">
+					<div class="card-header" style="color:#31708f;background-color:#d9edf7;">
+						Financials
+					</div>
+					<div class="card-body">
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Purchase Order No.</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="PONumber"></span>
+							</div>
+						</div>
+						<div class="row" id="ConsultantType">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Consultant Type</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Consultant Type"></span>
+							</div>
+						</div>
+						<div class="row" id="IfOtherExplain">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">If Other? Explain</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Contract Type Other"></span>
+							</div>
+						</div>
+						<div class="row" id="RawMaterialType">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Raw Material Type:</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Raw Material Type"></span>
+							</div>
+						</div>
+						<div class="row" id="ServiceType">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Service Type:</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Service Type"></span>
+							</div>
+						</div>
+						<div class="row"  id="LeaseType">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Lease Type:</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Lease Type"></span>
+							</div>
+						</div>
+						<div class="row" id="LeasedAssetType">
+							<div class="col-sm-2" >
+								<label style="color:rgb(0,0,128)">Leased Asset Type</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Lease Asset Type"></span>
+							</div>
+						</div>
+						<div class="row" id="LeaseStatus">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Lease Status</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Lease Status"></span>
+							</div>
+						</div>
+						<div class="row" id="Comments">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Comments</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Lease Comments"></span>
+							</div>
+						</div>
+						<div class="row" id="UserName">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">User Name</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="User Name"></span>
+							</div>
+						</div>
+						<div class="row" id="MachineType">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Machine Type</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Machine Type"></span>
+							</div>
+						</div>
+						<div class="row" id="ModelNumber">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Model Number</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Model Number"></span>
+							</div>
+						</div>
+						<div class="row" id="SerialNumber">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Serial Number</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Serial Number"></span>
+							</div>
+						</div>
+						<div class="row" id="LeaseNumber">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Lease Number</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Lease Number"></span>
+							</div>
+						</div>
+						<div class="row" id="Location">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Location</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Location"></span>
+							</div>
+						</div>
+						<div class="row" id="State">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">State</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="State"></span>
+							</div>
+						</div>
+						<div class="row" id="RealEstateOptions">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Real Estate Options</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Real Estate Options"></span>
+							</div>
+						</div>
+						<div class="row" id="SQFTOfProperty">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">SQFT Of Property</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="SQFT of Property"></span>
+							</div>
+						</div>
+						<div class="row" id="PropertyStreetAddress">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Property Street Address</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Real Estate Address"></span>
+							</div>
+						</div>
+						<div class="row" id="City">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">City</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Real Estate City"></span>
+							</div>
+						</div>
+						<div class="row" id="RealEstateState">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">State</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Real Estate State"></span>
+							</div>
+						</div>
+						<div class="row" id="RealEstateZipCode">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">ZIP</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Real Estate Zip Code"></span>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">GL Account Number *</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="GL Account Number"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Effective Date *</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="EffectiveDate"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Expiration Date: *</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Expiration Date"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Asset Acceptance date</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Asset Accept Date"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Notify Contract Manager:</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="ExpirationDays"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Early Notification/Contract Extension/Cancellation Date:</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="RemainderDate"></span>
+								<br>
+								<span class="hillbillyForm" data-displayName="Cancel Date"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Currency Type</label>
+							</div>
+							<div class="col-sm-4">
+                                        <select id="varCurrencyType"><option value=""></option></select>
+                                    </div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Payment Type:</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" id="PaymentType" onclick="Paymentclick()" data-displayName="Payment Type"></span>
+							</div>
+						</div>
+
+					<div class="row" id="Multipaymenttable">
+							<div class="col-sm-12 table-responsive-sm">
+							<table class="table" id="tblResponsive">
+								<thead>
+ 									<tr>
+										<th>#</th>
+										<th>1</th>
+										<th>2</th>
+										<th>3</th>
+										<th>4</th>
+										<th>5</th>
+										<th>6</th>
+										<th>7</th>
+										<th>8</th>
+										<th>9</th>
+										<th>10</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>January</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_1"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_1"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>February</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_2"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_2"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>March</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_3"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_3"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>April</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_4"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_4"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>May</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_5"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_5"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>June</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_6"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_6"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>July</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_7"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_7"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>August</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_8"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_8"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>September</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_9"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_9"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>October</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_10"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_10"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>November</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_11"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_11"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>December</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y1_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y2_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y3_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y4_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y5_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y6_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y7_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y8_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y9_12"></span>
+										</td>
+										<td>
+											<span class="hillbillyForm" data-displayName="y10_12"></span>
+										</td>
+									</tr>
+									<tr>
+										<td> </td>
+										<td>
+											cal1
+										</td>
+										<td>
+											cal2
+										</td>
+										<td>
+											cal3
+										</td>
+										<td>
+											cal4
+										</td>
+										<td>
+											cal5
+										</td>
+										<td>
+											cal6
+										</td>
+										<td>
+											cal7
+										</td>
+										<td>
+											cal8
+										</td>
+										<td>
+											cal9
+										</td>
+										<td>
+											cal10
+										</td>
+									</tr>
+									</tbody>
+
+								</table>
+								</div>
+								</div>
+
+<div class="row" id="LevelPayAmount">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Level Pay Amount</label>
+							</div>
+
+							<div class="col-sm-2">
+                           <span class="hillbillyForm" data-displayName="Level Pay Amount"></span>
+							</div>
+						</div>
+						<div class="row" id="PaymentDuration">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Payment Duration</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Payment Duration"></span>
+							</div>
+						</div>
+						<div class="row" id="PaymentDate">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Payment Date</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Payment Date"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Total Contract Cost</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="Total Request"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">US Dollar</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Global Allocation Required?</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" id="GlobalAlloc" onclick="Globalloc()" data-displayName="GlobalAllocation"></span>
+							</div>
+						</div>
+						<div class="row" id="Allocreg">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Allocation per Region</label>
+							</div>
+
+                          <div class="col-sm-2">
+								<div class="card-header" style="color: #3c763d;background-color: #dff0d8;">Americas</div>
+
+								<i class="fa fa-usd" aria-hidden="true"></i>
+								<span class="hillbillyForm" data-displayName="AllocAMS"></span>
+
+							</div>
+							<div class="col-sm-2">
+
+								<div class="card-header" style="color: #a94442;background-color: #f2dede;">Asiapac</div>
+								<i class="fa fa-usd" aria-hidden="true"></i>
+                                <span class="hillbillyForm" data-displayName="AllocAPAC"></span>
+								</div>
+							<div class="col-sm-2">
+								<div class="card-header" style="color: #8a6d3b;background-color: #fcf8e3;">Europe</div>
+								<i class="fa fa-usd" aria-hidden="true"></i>
+                                <span class="hillbillyForm" data-displayName="AllocEMEA"></span>
+							</div>
+
+						   <div class="col-sm-2">
+								<div class="card-header" style="color: #333;background-color: #f5f5f5;">Corporate</div>
+								<i class="fa fa-usd" aria-hidden="true"></i>
+                                <span class="hillbillyForm" data-displayName="AllocCORP"></span>
+								</div>
+
+</div>
+
+
+
+                <div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">CEA Number, if applicable</label>
+							</div>
+							<div class="col-sm-5">
+								<span class="hillbillyForm" data-displayName="CEA Number"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="narrative" class="tab-pane fade-in">
+				<div class="card">
+					 <div class="card-header" style="color: #8a6d3b;background-color: #fcf8e3;">
+                       Narrative And Attachments
+                    </div>
+					<div class="card-body">
+                    <div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Expected Results *</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Expected Results"></span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label style="color:rgb(0,0,128)">Payback Period:</label>
+							</div>
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="Payback Period"></span>
+							</div>
+						</div>
+					</div>
+					<div class="card-header" style="color: #8a6d3b;background-color: #fcf8e3;">
+                       Original Copy
+                    </div>
+					<div class="card-body">
+						<div>
+                            <p>
+                                <table>
+                                    <tr>
+                                        <td rowspan="2" width="190px" valign="top" height="50px">
+                                            <h5>
+                                                <label value="Upload Document:" id="label86" style="color:rgb(0,0,128)">Upload Document:</label>
+                                            </h5>
+                                        </td>
+                                        <td valign="bottom" height="15" id="attachmentsOnClient" style="padding-left: 7%;">
+                                            <span dir="ltr">
+                                                <input type="file" name="fileupload0" id="onetidIOFile" size="50" title="Name" />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="padding-left:5%">
+                                            <input id="attachOKbutton" type="BUTTON" onclick='OkAttach()' value="Upload" />
+                                            <span id="idSpace" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td> <span class="hillbillyForm" data-displayName="Attachments"></span></td>
+                                    </tr>
+                                </table>
+                            </p>
+                        </div>
+					</div>
+					<div class="card-header" style="color: #31708f;background-color: #d9edf7;">
+                       Revised Copy
+                    </div>
+					<div class="card-body">
+						<div>
+                            <p>
+                                <table>
+                                    <tr>
+                                        <td rowspan="2" width="190px" valign="top" height="50px">
+                                            <h5>
+                                                <label value="Upload Documents:" id="label86" style="color:rgb(0,0,128)">Upload Documents:</label>
+                                            </h5>
+                                        </td>
+                                        <td valign="bottom" height="15" id="attachmentsOnClient" style="padding-left: 7%;">
+                                            <span dir="ltr">
+                                                <input type="file" name="fileupload0" id="onetidIOFile" size="50" title="Name" />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="padding-left:5%">
+                                            <input id="attachOKbutton" type="BUTTON" onclick='OkAttach()' value="Upload" />
+                                            <span id="idSpace" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td> <span class="hillbillyForm" data-displayName="Attachments"></span></td>
+                                    </tr>
+                                </table>
+                            </p>
+                        </div>
+					</div>
+					<div class="card-header" style="color: white;background-color: #337ab7;">
+                       Final Copy
+                    </div>
+					<div class="card-body">
+						<div>
+                            <p>
+                                <table>
+                                    <tr>
+                                        <td rowspan="2" width="190px" valign="top" height="50px">
+                                            <h5>
+                                                <label value="Attachments" id="label86" style="color:rgb(0,0,128)">Upload Documents:</label>
+                                            </h5>
+                                        </td>
+                                        <td valign="bottom" height="15" id="attachmentsOnClient" style="padding-left: 7%;">
+                                            <span dir="ltr">
+                                                <input type="file" name="fileupload0" id="onetidIOFile" size="50" title="Name" />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="padding-left:5%">
+                                            <input id="attachOKbutton" type="BUTTON" onclick='OkAttach()' value="Upload" />
+                                            <span id="idSpace" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td> <span class="hillbillyForm" data-displayName="Attachments"></span></td>
+                                    </tr>
+                                </table>
+                            </p>
+                        </div>
+					</div>
+
+				</div>
+					</div>
+					<div id="approval" class="tab-pane fade-in">
+						<div class="card">
+							<div class="card-header" style="color: #8a6d3b;background-color: #fcf8e3;">
+                       Approval
+                    </div>
+<div class="card-body">
+<div class="row" >
+							<div class="col-sm-2">
+								<label value="Task NameMain" id="label79" style="color:rgb(0,0,128);font-weight:bold">Task Name</label>
+
+							</div>
+							<div class="col-sm-3">
+								<label value="ApproverMain" id="label79" style="color:rgb(0,0,128);font-weight:bold">Approver</label>
+							</div>
+							<div class="col-sm-2">
+								<label value="Status" id="label79" style="color:rgb(0,0,128);font-weight:bold">Status</label>
+							</div>
+							<div class="col-sm-2">
+								<label value="Status Date" id="label79" style="color:rgb(0,0,128);font-weight:bold">Status Date</label>
+							</div>
+							<div class="col-sm-3">
+								<label value="Remarks" id="label79" style="color:rgb(0,0,128);font-weight:bold">Remarks</label>
+							</div>
+
+
+						</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">Draft</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="WIP Draft Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="WIP Draft Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="WIP Draft Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="WIP Draft Remarks"></span>
+							</div>
+							</div>
+						<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">CCA Admin Approver</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="WIP CCA Admin Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="WIP CCA Admin Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="WIP CCA Admin Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="WIP CCA Admin Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">WIP Review</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="WIP Review Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="WIP Review Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="WIP Review Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="WIP Review Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">Level1_1Approval</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Level1_1 Approval Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Level1 Approval Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Level1 Approval Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Level1 Approval Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">CIOApprover</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="CIO Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="CIO Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="CIO Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="CIO Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">Level2_1Approval</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Level2_1 Approval Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Level2 Approval Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Level2 Approval Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Level2 Approval Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">CEOApprover</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="CEO Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="CEO Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="CEO Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="CEO Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">ApprovedApprover</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Approved Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Approved Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Approved Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Approved Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">RejectedApprover</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Rejected Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Rejected Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Rejected Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Rejected Remarks"></span>
+							</div>
+							</div>
+							<div class="row">
+							<div class="col-sm-2">
+								<label value="Create" id="label12" style="color:rgb(0,0,128)">ExecutedApprover</label>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Executed Approver"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Executed Status"></span>
+							</div>
+							<div class="col-sm-2">
+								<span class="hillbillyForm" data-displayName="Executed Status Date"></span>
+							</div>
+							<div class="col-sm-3">
+								<span class="hillbillyForm" data-displayName="Executed Remarks"></span>
+							</div>
+
+							</div>
+
+
+
+
+</div>
+</div>
+</div>
+<div id="history" class="tab-pane fade-in">
+	<div class="card" style="border-color:#d9edf7;">
+		<div class="card-header" style="color: #31708f;background-color: #d9edf7;">
+                       CCA - History
+                    </div>
+					<div class="card-body">
+                    <div class="row">
+							<div class="col-sm-10">
+								<span class="hillbillyForm" data-displayName="History"></span>
+							</div>
+						</div>
+					</div>
+<div class="card-header" style="color: #31708f;background-color: #d9edf7;">
+                       Email Correspondence / Attachments
+                    </div>
+					<div class="card-body">
+                    <div>
+                            <p>
+                                <table>
+                                    <tr>
+                                        <td rowspan="2" width="190px" valign="top" height="50px">
+                                            <h5>
+                                                <label value="Attachments" id="label86" style="color:rgb(0,0,128)"> Attachments:</label>
+                                            </h5>
+                                        </td>
+                                        <td valign="bottom" height="15" id="attachmentsOnClient" style="padding-left: 7%;">
+                                            <span dir="ltr">
+                                                <input type="file" name="fileupload0" id="onetidIOFile" size="50" title="Name" />
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="padding-left:5%">
+                                            <input id="attachOKbutton" type="BUTTON" onclick='OkAttach()' value="Upload" />
+                                            <span id="idSpace" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr>
+                                        <td> <span class="hillbillyForm" data-displayName="Attachments"></span></td>
+                                    </tr>
+                                </table>
+                            </p>
+                        </div>
+					</div>
+</div>
+</div>
+	</div>
+
+
+
+</body>
+
+</html>
